@@ -5,5 +5,5 @@
 
 ->So to prevent that, this work-wear is designed to let the owner know what are the conditions down in the mine and to save the workers if the presence of gases is increased than the safe limits.
 
-->The Components include MQ-2, MQ-135, DHT-11, Arduino nano.
+->The Components include MQ-2, MQ-135, DHT-11, Node mcu.
 
