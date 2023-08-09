@@ -1,0 +1,42 @@
+#include <DHT.h>
+#include <MQUnifiedsensor.h>
+
+#define DHT_PIN 2       // DHT11 sensor pin
+#define DHT_TYPE DHT11  // DHT sensor type
+
+#define MQ2_PIN A0      // MQ2 sensor analog pin
+#define MQ135_PIN A1    // MQ135 sensor analog pin
+
+DHT dht(DHT_PIN, DHT_TYPE);
+
+MQUnifiedsensor MQ2(AnalogPin, R0);
+MQUnifiedsensor MQ135(AnalogPin, R0);
+
+void setup() {
+  Serial.begin(9600);
+  dht.begin();
+  MQ2.begin(MQ2_PIN, Ro, 200);
+  MQ135.begin(MQ135_PIN, Ro, 300);
+}
+
+void loop() {
+  float temperature = dht.readTemperature();
+  float humidity = dht.readHumidity();
+
+  float mq2_ppm = MQ2.readSensor();
+  float mq135_ppm = MQ135.readSensor();
+
+  Serial.print("Temperature: ");
+  Serial.print(temperature);
+  Serial.print(" °C, Humidity: ");
+  Serial.print(humidity);
+  Serial.println(" %");
+
+  Serial.print("MQ2 PPM: ");
+  Serial.println(mq2_ppm);
+
+  Serial.print("MQ135 PPM: ");
+  Serial.println(mq135_ppm);
+
+  delay(2000); // Delay between readings
+}
